@@ -88,11 +88,16 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/books/new' do
-
+    erb :'/books/create_book'
   end
 
   post '/books' do
-
+    if params[:title].empty? || params[:author].empty?
+      redirect '/books/new'
+    else
+      @book = Book.new(title: params[:title], author: params[:author], user_id: User.current_user(session).id)
+      redirect "/#{User.current_user(session).slug}/bookcase"
+    end
   end
 
   get '/books/:id' do
