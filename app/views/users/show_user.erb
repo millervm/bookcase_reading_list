@@ -1,13 +1,12 @@
-<h3><%= @user.username %>'s Bookcase</h3>
+<h2><%= @user.username %>'s Bookcase</h2>
 
-<% to_read = @user.books.collect {|book| book.to_read} %>
-<% have_read = @user.books.collect {|book| !book.to_read} %>
+<% to_read = @user.books.select {|book| book.to_read} %>
+<% have_read = @user.books.select {|book| !book.to_read} %>
 
 <h4>To Read</h4>
 <% to_read.each do |book| %>
   <p><a href="/books/#{book.id}"><%= book.title %></a></p>
   <p>&nbsp&nbsp&nbsp-&nbsp<%= book.author %></p>
-  <br></br>
 <% end %>
 
 <br></br>
@@ -17,5 +16,8 @@
 <% have_read.each do |book| %>
   <p><a href="/books/#{book.id}"><%= book.title %></a></p>
   <p>&nbsp&nbsp&nbsp-&nbsp<%= book.author %></p>
-  <br></br>
 <% end %>
+
+<br></br>
+<br></br>
+<a href="/index">Back to My Account</a>

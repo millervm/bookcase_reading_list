@@ -15,6 +15,7 @@ class ApplicationController < Sinatra::Base
 
   get '/signup' do
     if User.is_logged_in?(session)
+      @user = User.current_user(session)
       redirect '/index'
     else
       erb :'/users/create_user'
@@ -37,6 +38,7 @@ class ApplicationController < Sinatra::Base
 
   get '/login' do
     if User.is_logged_in?(session)
+      @user = User.current_user(session)
       redirect '/index'
     else
       erb :'/users/login'
@@ -68,6 +70,7 @@ class ApplicationController < Sinatra::Base
 
   get '/index' do
     if User.is_logged_in?(session)
+      @user = User.current_user(session)
       erb :'/users/user_index'
     else
       redirect '/login'
@@ -88,24 +91,46 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/books/new' do
-    erb :'/books/create_book'
+    if User.is_logged_in?(session)
+      erb :'/books/create_book'
+    else
+      redirect '/login'
+    end
   end
 
   post '/books' do
     if params[:title].empty? || params[:author].empty?
       redirect '/books/new'
     else
-      @book = Book.new(title: params[:title], author: params[:author], user_id: User.current_user(session).id)
+      @book = Book.create(title: params[:title], author: params[:author], user_id: User.current_user(session).id)
       redirect "/#{User.current_user(session).slug}/bookcase"
     end
   end
 
-  get '/books/:id' do
-
+  get '/books/:id/' do
+    if User.is_logged_in?(session)
+      @book = Book.find(params[:id])
+      if @book.user == User.current_user(session)
+        erb :'/books/show_book'
+      else
+        redirect '/index'
+      end
+    else
+      redirect '/login'
+    end
   end
 
   get '/books/:id/edit' do
-
+    if User.is_logged_in?(session)
+      @book = Book.find(params[:id])
+      if @book.user == User.current_user(session)
+        erb :'/books/edit_book'
+      else
+        redirect '/index'
+      end
+    else
+      redirect '/login'
+    end
   end
 
   post '/books/:id' do

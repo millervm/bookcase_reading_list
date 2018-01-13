@@ -5,6 +5,7 @@ class CreateBooks < ActiveRecord::Migration[5.1]
       t.string :author
       t.boolean :to_read, :default => true
       t.integer :user_id
+    end
   end
 
   def down
