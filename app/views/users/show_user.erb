@@ -1,7 +1,7 @@
 <h3><%= @user.username %>'s Bookcase</h3>
 
-<% to_read = @user.books.collect {|book| book.status} %>
-<% have_read = @user.books.collect {|book| !book.status} %>
+<% to_read = @user.books.collect {|book| book.to_read} %>
+<% have_read = @user.books.collect {|book| !book.to_read} %>
 
 <h4>To Read</h4>
 <% to_read.each do |book| %>
