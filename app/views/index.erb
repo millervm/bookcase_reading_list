@@ -1,0 +1,8 @@
+<h1>Welcome to Bookcase</h1>
+
+<% if !User.is_logged_in?(session) %>
+  <h3><a href="/signup">Create account</a></h3>
+  <h3><a href="/login">Log In</a></h3>
+<% else %>
+  <h3><a href="/index">My Account</a></h3>
+<% end %>
