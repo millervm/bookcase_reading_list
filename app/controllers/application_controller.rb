@@ -5,8 +5,12 @@ class ApplicationController < Sinatra::Base
   configure do
     enable :sessions unless test?
     set :session_secret, "secret"
-    set :public_folder, 'public'
+    set :public_folder, File.dirname(__FILE__) + '/static'
     set :views, 'app/views'
+  end
+
+  not_found do
+    erb :error
   end
 
   get '/' do
@@ -146,11 +150,11 @@ class ApplicationController < Sinatra::Base
   delete '/books/:id/delete' do
     if User.is_logged_in?(session)
       @book = Book.find(params[:id])
-      if @book.user = User.current_user(session)
-        @book.destroy
-        redirect "/#{User.current_user(session).slug}/bookcase"
+      if @book.user == User.current_user(session)
+        @book.delete
+        redirect "/index"
       else
-        redirect "/#{User.current_user(session).slug}/bookcase"
+        redirect "/index"
       end
     else
       redirect '/login'

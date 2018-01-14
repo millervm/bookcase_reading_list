@@ -1,0 +1,13 @@
+body {
+  background-color: #eadbae;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  color: #333333;
+}
+
+a {
+  color: #333333;
+}
+
+a:visited {
+  color: #696969;
+}
