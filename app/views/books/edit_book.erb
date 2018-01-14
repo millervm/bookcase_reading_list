@@ -1,12 +1,23 @@
 <h2>Edit Book Details</h2>
 
-<form method="patch" action="/books/<%= @book.id %>">
+<form method="post" action="/books/<%= @book.id %>">
   <input id="hidden" type="hidden" name="_method" value="patch">
-  <input type="text" id="title" name="title" placeholder="<%= @book.title">
+  <input type="text" id="title" name="title" value="<%= @book.title %>">
   <br></br>
-  <input type="text" id="title" name="title" placeholder="<%= @book.title">
+  <input type="text" id="author" name="author" value="<%= @book.author %>">
   <br></br>
-  <input type="radio" id="to_read" name="to_read" <%='checked' if @book.to_read %>To Read</input>
-  <input type="radio" id="to_read" name="to_read" <%='checked' if !@book.to_read %>Have Read</input>
+  <input type="radio" id="to_read" name="to_read" value="true" <%='checked' if @book.to_read %>>To Read</input>
+  <input type="radio" id="to_read" name="to_read" value="false" <%='checked' if !@book.to_read %>>Have Read</input>
+  <br></br>
   <input type="submit" value="Edit Book">
 </form>
+
+<br></br>
+<form method="post" action="/books/<%= @book.id %>/delete">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Remove from Bookcase">
+</form>
+
+<br></br>
+
+<a href="/books/<%= @book.id %>">Back to Book</a>

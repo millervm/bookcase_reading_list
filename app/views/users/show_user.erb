@@ -5,19 +5,19 @@
 
 <h4>To Read</h4>
 <% to_read.each do |book| %>
-  <p><a href="/books/#{book.id}"><%= book.title %></a></p>
+  <p><a href="/books/<%= book.id %>"><%= book.title %></a></p>
   <p>&nbsp&nbsp&nbsp-&nbsp<%= book.author %></p>
 <% end %>
 
-<br></br>
 <br></br>
 
 <h4>Have Read</h4>
 <% have_read.each do |book| %>
-  <p><a href="/books/#{book.id}"><%= book.title %></a></p>
+  <p><a href="/books/<%= book.id %>"><%= book.title %></a></p>
   <p>&nbsp&nbsp&nbsp-&nbsp<%= book.author %></p>
 <% end %>
 
 <br></br>
+<h4><a href='/books/new'>Add New Book</a></h4>
 <br></br>
 <a href="/index">Back to My Account</a>

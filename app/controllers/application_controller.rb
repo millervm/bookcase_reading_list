@@ -107,7 +107,7 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  get '/books/:id/' do
+  get '/books/:id' do
     if User.is_logged_in?(session)
       @book = Book.find(params[:id])
       if @book.user == User.current_user(session)
@@ -133,12 +133,28 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  post '/books/:id' do
-
+  patch '/books/:id' do
+    if params[:title].empty? || params[:author].empty?
+      redirect "/books/#{params[:id]}/edit"
+    else
+      @book = Book.find(params[:id])
+      @book.update(title: params[:title], author: params[:author], to_read: params[:to_read])
+      redirect "/books/#{params[:id]}"
+    end
   end
 
-  get '/books/:id/delete' do
-
+  delete '/books/:id/delete' do
+    if User.is_logged_in?(session)
+      @book = Book.find(params[:id])
+      if @book.user = User.current_user(session)
+        @book.destroy
+        redirect "/#{User.current_user(session).slug}/bookcase"
+      else
+        redirect "/#{User.current_user(session).slug}/bookcase"
+      end
+    else
+      redirect '/login'
+    end
   end
 
 end
