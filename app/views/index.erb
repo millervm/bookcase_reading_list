@@ -1,8 +1,8 @@
-<h1>Welcome to Bookcase</h1>
-<br></br>
+<h1>Bookcase</h1>
+<br>
 <% if !User.is_logged_in?(session) %>
   <h3><a href="/signup">Create Account</a></h3>
-  <br></br>
+  <br>
   <h3><a href="/login">Log In</a></h3>
 <% else %>
   <h3><a href="/index">My Account</a></h3>

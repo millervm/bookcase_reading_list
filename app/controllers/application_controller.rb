@@ -5,7 +5,7 @@ class ApplicationController < Sinatra::Base
   configure do
     enable :sessions unless test?
     set :session_secret, "secret"
-    set :public_folder, File.dirname(__FILE__) + '/static'
+    set :public_folder, 'public'
     set :views, 'app/views'
   end
 
@@ -112,8 +112,8 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/books/:id' do
-    if User.is_logged_in?(session)
-      @book = Book.find(params[:id])
+    @book = Book.find_by(id: params[:id])
+    if @book && User.is_logged_in?(session)
       if @book.user == User.current_user(session)
         erb :'/books/show_book'
       else

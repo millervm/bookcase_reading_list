@@ -3,16 +3,13 @@
 <h3>Author: <%= @book.author %></h3>
 
 <% if @book.to_read %>
-  <h4>Status: To Read</h4>
+  <h3>Status: To Read</h3>
 <% else %>
-  <h4>Status: Have Read</h4>
+  <h3>Status: Have Read</h3>
 <% end %>
 
+<br>
+<h4><a href="/books/<%= @book.id %>/edit">Edit Book Details</a></h4>
 <br></br>
-
-<a href="/books/<%= @book.id %>/edit">Edit Book Details</a>
 <br></br>
-
-<br></br>
-
 <a href="/<%= User.current_user(session).slug %>/bookcase">Back to My Bookcase</a>
