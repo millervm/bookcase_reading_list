@@ -2,10 +2,13 @@
 
 <form method="post" action="/books/<%= @book.id %>">
   <input id="hidden" type="hidden" name="_method" value="patch">
+  <label>Title:</label>
   <input type="text" id="title" name="title" value="<%= @book.title %>">
   <br></br>
+  <label>Author:</label>
   <input type="text" id="author" name="author" value="<%= @book.author %>">
   <br></br>
+  <label>Status:</label>
   <input type="radio" id="to_read" name="to_read" value="true" <%='checked' if @book.to_read %>>To Read</input>
   <input type="radio" id="to_read" name="to_read" value="false" <%='checked' if !@book.to_read %>>Have Read</input>
   <br></br>
