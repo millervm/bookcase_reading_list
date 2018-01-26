@@ -3,6 +3,6 @@
 <h4>Number of Books to Read: <%= @user.books.select {|book| book.to_read}.count %></h4>
 <h4>Number of Books Read: <%= @user.books.select {|book| !book.to_read}.count %></h4>
 <br>
-<h4><a href="/<%= @user.slug %>/bookcase">My Bookcase</a></h4>
+<h4><a href="/users/<%= @user.slug %>/bookcase">My Bookcase</a></h4>
 <br></br>
 <a href="/logout">Log Out</a>

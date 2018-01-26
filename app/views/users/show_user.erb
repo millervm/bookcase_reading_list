@@ -4,20 +4,21 @@
 <% have_read = @user.books.select {|book| !book.to_read} %>
 
 <br>
-<h4><ins>To Read</ins></h4>
+<h3><ins>To Read</ins></h3>
 <% to_read.sort {|a,b| a.title.downcase <=> b.title.downcase}.each do |book| %>
   <p><a href="/books/<%= book.id %>"><%= book.title %></a></p>
   <p>&nbsp&nbsp&nbsp-&nbsp<%= book.author %></p>
 <% end %>
 <br>
-<h4><ins>Have Read</ins></h4>
+<h3><ins>Have Read</ins></h3>
 <% have_read.sort {|a,b| a.title.downcase <=> b.title.downcase}.each do |book| %>
   <p><a href="/books/<%= book.id %>"><%= book.title %></a></p>
   <p>&nbsp&nbsp&nbsp-&nbsp<%= book.author %></p>
 <% end %>
 
 <br></br>
+<br></br>
 <h4><a href='/books/new'>Add New Book</a></h4>
 <br></br>
-<a href="/index">Back to My Account</a>
+<a href="/users/index">Back to My Account</a>
 <br></br>

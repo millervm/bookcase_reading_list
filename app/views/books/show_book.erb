@@ -8,8 +8,8 @@
   <h3>Status: Have Read</h3>
 <% end %>
 
-<br>
+<br></br>
+<br></br>
 <h4><a href="/books/<%= @book.id %>/edit">Edit Book Details</a></h4>
 <br></br>
-<br></br>
-<a href="/<%= User.current_user(session).slug %>/bookcase">Back to My Bookcase</a>
+<a href="/users/<%= User.current_user(session).slug %>/bookcase">Back to My Bookcase</a>
