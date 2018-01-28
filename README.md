@@ -6,6 +6,15 @@ This Ruby Sinatra application provides users with a content management system fo
 
 # Usage
 
-To use the application, clone the repository, run rake db:migrate, and run shotgun to access it in your browser.
+To use the application, clone the repository, run <code>rake db:migrate</code>, and run <code>shotgun</code> to access it in your browser.
 
 Each user must first create an account, which requires an email address, username, and password in order to access the other features.
+
+# Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/millervm/bookcase_reading_list. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
+
+# License
+
+The application is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
