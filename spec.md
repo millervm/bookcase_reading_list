@@ -17,7 +17,8 @@ Specs:
     Each Book (which "belongs_to" a specific User) can be created/added, read/viewed, updated/edited, and destroyed/removed by the User who created it. There are forms for creating, editing, and deleting the item, and a Book-specific page displays the Book's details.
 - [x] Include user input validations
     Any empty entries ("" for username, password, book title, etc.) are invalid, and an authentication process is used during account login.
-- [ ] Display validation failures to user with error message (example form URL e.g. /posts/new)
+- [x] Display validation failures to user with error message (example form URL e.g. /posts/new)
+    Rack Flash displays error messages after redirects when users try to submit empty fields on forms.
 - [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
   README file contains a description of the application, instructions for installation and use, and contributor and license details.
 
