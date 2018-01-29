@@ -1,6 +1,9 @@
 require './config/environment'
+require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
+
+  use Rack::Flash
 
   configure do
     enable :sessions unless test?
@@ -28,6 +31,7 @@ class ApplicationController < Sinatra::Base
 
   post '/users' do
     if params[:username].empty? || params[:email].empty? || params[:password].empty?
+      flash[:message] = "All fields are required."
       redirect '/signup'
     else
       @user = User.new(params)
@@ -51,6 +55,7 @@ class ApplicationController < Sinatra::Base
 
   post '/login' do
     if params[:username].empty? || params[:password].empty?
+      flash[:message] = "All fields are required."
       redirect '/login'
     else
       @user = User.find_by(username: params[:username])
@@ -104,6 +109,7 @@ class ApplicationController < Sinatra::Base
 
   post '/books' do
     if params[:title].empty? || params[:author].empty?
+      flash[:message] = "All fields are required."
       redirect '/books/new'
     else
       @book = Book.create(title: params[:title], author: params[:author], user_id: User.current_user(session).id)
@@ -139,6 +145,7 @@ class ApplicationController < Sinatra::Base
 
   patch '/books/:id' do
     if params[:title].empty? || params[:author].empty?
+      flash[:message] = "All fields are required."
       redirect "/books/#{params[:id]}/edit"
     else
       @book = Book.find(params[:id])
